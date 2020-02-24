@@ -42,6 +42,26 @@
     });
 ```
 
+Если использовать метод push, компонент, в который нужно перейти нужно будет создавать каждый раз. Можно избежать этого поведения, 
+создав глобальный стек с помощью именнованных роутов. Необходимо добавить атрибут routes и удалить атрибут home:
+```
+    return MaterialApp(
+      routes: {
+        '/': (_) => ProductsPage(_products, _addProduct, _deleteProduct),
+        '/admin': (_) => ProductsAdminPage(),
+      },
+      //home: HomePage();
+    
+    pushNamed('/')
+```
+
+Роуты могут быть только статичными. Если нужен динамичный роут, нужно воспользоваться методами: *onGenerateRoute, onUnknownRoute*
+```
+          onGenerateRoute: (RouteSettings settings) {
+          final List<String> pathElements = settings.name.split('/');
+          return MaterialPageRoute(...);
+```
+
 #### Работа с табами:
 Нужно обернуть странцу в *DefaultTabController* и задать обязательное свойство *length*
 Далее добавить *TabBar* и закинуть туда Tab равные длине.
@@ -61,4 +81,19 @@
               ProductListPage(),
           ],                   
           ....);     
+```
+
+#### Работа с модальными окнами.
+Отнаследовавшись от Stateless или Stateful виджит, можно воспользоваться методами, которые там уже реализованы:
+*showModalBottomSheet*, *showDialog*. ShowDialog так же использует stack. Закрытие нужно делать через навигатор. 
+```
+    showModalBottomSheet(context: context, builder: (BuildContext context){
+        return Center(child: Text('This is a modal'),);
+    });    
+    
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+          ...)}
 ```
