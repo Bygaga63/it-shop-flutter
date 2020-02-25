@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       routes: {
         '/': (_) => ProductsPage(_products, _addProduct, _deleteProduct),
-        '/admin': (_) => ProductsAdminPage(),
+        '/admin': (_) => ProductsAdminPage(_addProduct, _deleteProduct),
       },
       onGenerateRoute: (RouteSettings settings) {
         final List<String> pathElements = settings.name.split('/');
@@ -56,12 +56,15 @@ class _MyAppState extends State<MyApp> {
         return null;
       },
       onUnknownRoute: (RouteSettings settings) {
-        return MaterialPageRoute(builder: (_) => ProductsPage(_products, _addProduct, _deleteProduct));
+        return MaterialPageRoute(
+            builder: (_) =>
+                ProductsPage(_products, _addProduct, _deleteProduct));
       },
       theme: ThemeData(
-          brightness: Brightness.light,
-          primarySwatch: Colors.deepOrange,
-          accentColor: Colors.deepPurple),
+        brightness: Brightness.light,
+        primarySwatch: Colors.deepOrange,
+        accentColor: Colors.deepPurple,
+      ),
 //      home: AuthPage(),
     );
   }
