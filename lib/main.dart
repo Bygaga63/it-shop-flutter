@@ -61,7 +61,6 @@ class _MyAppState extends State<MyApp> {
       onUnknownRoute: (RouteSettings settings) {
         return MaterialPageRoute(builder: (_) => ProductsPage(_products));
       },
-      initialRoute: '/auth',
       theme: ThemeData(
         brightness: Brightness.light,
         primarySwatch: Colors.deepOrange,

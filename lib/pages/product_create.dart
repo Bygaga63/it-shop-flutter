@@ -10,9 +10,9 @@ class ProductCreatePage extends StatefulWidget {
 }
 
 class _ProductCreatePageState extends State<ProductCreatePage> {
-  String titleValue = '';
-  String descriptionValue = '';
-  double priceValue;
+  String _titleValue = '';
+  String _descriptionValue = '';
+  double _priceValue;
 
   @override
   Widget build(BuildContext context) {
@@ -22,19 +22,19 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
         child: Column(
           children: <Widget>[
             TextField(
-              onChanged: (String value) => setState(() => titleValue = value),
+              onChanged: (String value) => setState(() => _titleValue = value),
               decoration: InputDecoration(labelText: 'Product Title'),
             ),
             TextField(
               decoration: InputDecoration(labelText: 'Product Description'),
               onChanged: (String value) =>
-                  setState(() => descriptionValue = value),
+                  setState(() => _descriptionValue = value),
               maxLines: 4,
             ),
             TextField(
               decoration: InputDecoration(labelText: 'Product Price'),
               onChanged: (String value) =>
-                  setState(() => priceValue = double.parse(value)),
+                  setState(() => _priceValue = double.parse(value)),
               keyboardType: TextInputType.number,
             ),
             SizedBox(height: 10.0),
@@ -43,9 +43,9 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
               color: Theme.of(context).accentColor,
               onPressed: () {
                 Map<String, dynamic> product = {
-                  'title': titleValue,
-                  'description': descriptionValue,
-                  'price': priceValue,
+                  'title': _titleValue,
+                  'description': _descriptionValue,
+                  'price': _priceValue,
                   'image': 'assets/food.jpg'
                 };
 
