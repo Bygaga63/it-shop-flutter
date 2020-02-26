@@ -37,9 +37,21 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
                   setState(() => priceValue = double.parse(value)),
               keyboardType: TextInputType.number,
             ),
+            SizedBox(height: 10.0),
             RaisedButton(
-              onPressed: () => widget.addProduct(
-                  {'title': titleValue, 'image': 'assets/food.jpg'}),
+              textColor: Colors.white,
+              color: Theme.of(context).accentColor,
+              onPressed: () {
+                Map<String, dynamic> product = {
+                  'title': titleValue,
+                  'description': descriptionValue,
+                  'price': priceValue,
+                  'image': 'assets/food.jpg'
+                };
+
+                widget.addProduct(product);
+                Navigator.pushReplacementNamed(context, '/');
+              },
               child: Text('Save'),
             ),
           ],
